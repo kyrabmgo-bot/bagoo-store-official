@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bagoo Official Store</title>
+<style>
+:root {
+  --site-primary:#6D5DFB;
+  --site-on-primary:#FFFFFF;
+  --site-secondary:#15213A;
+  --site-on-secondary:#FFFFFF;
+  --site-background:#0B1020;
+  --site-on-background:#F4F6FF;
+  --site-font-body:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --site-font-heading:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --site-heading-scale:1;
+  --site-spacing-scale:1;
+  --site-radius-scale:1;
+  --site-decoration-opacity:1;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--site-font-body);background:var(--site-background);color:var(--site-on-background)}
+#app{min-height:100vh;width:100%;border-radius:0;background:light-dark(#F5F7FC,var(--site-background));color:light-dark(#111827,var(--site-on-background));}
+.shell{max-width:1120px;margin:auto;padding:0 calc(22px * var(--site-spacing-scale)) 60px}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.3px}
+.logo{width:42px;height:42px;border-radius:14px;background:var(--site-primary);display:grid;place-items:center;color:white;font-size:22px;box-shadow:0 8px 25px #6d5dfb55}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:#8b91a8;font-weight:800;margin-top:2px}
+nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+nav button,.ghost{border:0;background:transparent;color:inherit;padding:10px 13px;border-radius:12px;font-weight:700;cursor:pointer}
+nav button:hover,.ghost:hover{background:#6d5dfb15}
+.pill{background:#E9E7FF;color:#5141D9;border-radius:99px;padding:7px 11px;font-size:11px;font-weight:900;letter-spacing:.6px}
+.hero{background:linear-gradient(120deg,#111B35,#202C56 62%,#4D3CC1);color:white;border-radius:26px;padding:clamp(24px,5vw,54px);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-65px;top:-100px;background:#8d7dff33;filter:blur(2px);pointer-events:none;opacity:var(--site-decoration-opacity)}
+.eyebrow{color:#BEB7FF;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+h1{font-family:var(--site-font-heading);font-size:calc(clamp(36px,6vw,62px) * var(--site-heading-scale));line-height:1.02;letter-spacing:-2px;margin:16px 0}
+.hero p{color:#D3D9EC;max-width:510px;line-height:1.65;margin:0 0 24px}
+.primary{background:var(--site-primary);color:var(--site-on-primary);border:0;border-radius:13px;padding:13px 18px;font-weight:850;cursor:pointer;box-shadow:0 8px 22px #6d5dfb44}
+.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.hero .primary{background:#fff;color:#30258F;box-shadow:none}
+.trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;color:#C7CDE0;font-size:12px;font-weight:650}
+section{margin-top:36px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
+h2{font-size:calc(25px * var(--site-heading-scale));letter-spacing:-.7px;margin:0}
+.sub{color:#8991A8;font-size:13px;margin-top:6px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.game{background:light-dark(#FFFFFF,#121A2D);border:1px solid light-dark(#E7EAF2,#26324B);border-radius:20px;padding:17px;cursor:pointer;text-align:left;color:inherit;transition:.18s}
+.game:hover{border-color:var(--site-primary);transform:translateY(-3px);box-shadow:0 12px 30px #26345b14}
+.game-art{height:126px;border-radius:14px;display:grid;place-items:center;font-size:40px;font-weight:950;color:white;letter-spacing:-2px;margin-bottom:15px;overflow:hidden;position:relative}
+.ml{background:linear-gradient(135deg,#0D526C,#28B7C5)}
+.pubg{background:linear-gradient(135deg,#8B431C,#F0A13E)}
+.bgmi{background:linear-gradient(135deg,#1A654C,#F0A93B)}
+.game-art span{font-size:13px;letter-spacing:2px;display:block;text-align:center;margin-top:4px}
+.game strong{font-size:16px}
+.game small{display:block;color:#8A92A8;margin-top:5px;font-size:12px}
+.arrow{float:right;color:var(--site-primary);font-size:20px}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info{background:light-dark(#fff,#121A2D);border:1px solid light-dark(#E7EAF2,#26324B);border-radius:17px;padding:17px}
+.info b{display:block;margin:9px 0 5px}
+.info p{font-size:12px;color:#8991A8;line-height:1.5;margin:0}
+.iconbox{width:34px;height:34px;background:#6D5DFB18;color:var(--site-primary);border-radius:11px;display:grid;place-items:center;font-size:17px}
+footer{margin-top:42px;border-top:1px solid light-dark(#E4E8F0,#26324B);padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#8A92A8;font-size:12px}
+.view{display:none}
+.view.active{display:block}
+.back{margin:22px 0 15px;color:#7B8298;font-size:13px;font-weight:700;cursor:pointer}
+.product-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.panel{background:light-dark(#fff,#121A2D);border:1px solid light-dark(#E7EAF2,#26324B);border-radius:20px;padding:21px}
+.panel h3{margin:0 0 8px}
+.field{display:block;margin-top:16px;font-size:12px;font-weight:800;color:#7B8298}
+input{width:100%;margin-top:8px;padding:13px;border-radius:12px;border:1px solid light-dark(#DCE1EC,#33405C);background:light-dark(#fff,#0D1425);color:inherit;font:inherit;outline:none}
+input:focus{border-color:var(--site-primary);box-shadow:0 0 0 3px #6d5dfb20}
+.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.package-section{grid-column:1/-1;margin-top:12px;padding-bottom:2px}
+.package-section h4{margin:0 0 3px;font-size:15px;letter-spacing:.2px}
+.package-section p{margin:0;color:#8B92A7;font-size:11px}
+.pkg{border:1px solid light-dark(#E1E5EF,#33405C);border-radius:14px;padding:14px;text-align:left;background:transparent;color:inherit;cursor:pointer}
+.pkg.selected{border:2px solid var(--site-primary);background:#6d5dfb12;padding:13px}
+.pkg b{display:block;font-size:15px}
+.pkg small{color:#8B92A7}
+.price{font-size:13px;color:var(--site-primary);font-weight:900;margin-top:8px}
+.notice{padding:12px;border-radius:12px;background:#FFF5DF;color:#8B5A0A;font-size:12px;line-height:1.5;margin-top:16px}
+.summary{display:flex;justify-content:space-between;margin:12px 0;font-size:13px}
+.summary.total{border-top:1px solid light-dark(#E7EAF2,#33405C);padding-top:14px;font-size:17px;font-weight:900}
+.full{width:100%;margin-top:14px}
+.status{background:#E9F8EF;color:#16713B;padding:12px;border-radius:12px;font-size:13px;margin-top:14px;display:none}
+.mini{font-size:11px;color:#8B92A7;line-height:1.55}
+@media(max-width:720px){.games{grid-template-columns:1fr}.game{display:grid;grid-template-columns:104px 1fr;gap:13px;align-items:center}.game-art{height:90px;margin:0}.game small{margin-top:4px}.arrow{grid-column:2;grid-row:1}.info-grid{grid-template-columns:1fr}.product-layout{grid-template-columns:1fr}nav button{padding:8px}.shell{padding-left:16px;padding-right:16px}.hero{border-radius:20px}}
+@media(prefers-color-scheme:light){:root{color-scheme:light}}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="shell">
+<header>
+ <div class="brand"><div class="logo">B</div><div>BAGOO <small>OFFICIAL STORE</small></div></div>
+ <nav><button onclick="home()">Home</button><button onclick="scrollToGames()">Games</button><button onclick="showTrack()">Track order</button></nav>
+</header>
+<main id="homeView" class="view active">
+ <div class="hero">
+  <div class="eyebrow">Your gaming top-up destination</div>
+  <h1>Power up.<br>Play more.</h1>
+  <p>Top up your favourite games with a simple, clear checkout experience. Choose a game to get started.</p>
+  <button class="primary" onclick="scrollToGames()">Explore games&nbsp; →</button>
+  <div class="trust"><span>✦ Simple checkout</span><span>✦ Order tracking</span><span>✦ Customer support</span></div>
+ </div>
+ <section id="gamesSection">
+  <div class="section-head"><div><h2>Choose your game</h2><div class="sub">Select a game to view recharge packages</div></div><span class="pill">3 GAMES</span></div>
+  <div class="games">
+   <button class="game" onclick="openGame('mlbb')"><div class="game-art ml">ML<span>MOBILE LEGENDS</span></div><div><strong>MLBB Diamonds</strong><small>Mobile Legends: Bang Bang</small><b class="arrow">↗</b></div></button>
+   <button class="game" onclick="openGame('pubg')"><div class="game-art pubg">UC<span>PUBG MOBILE GLOBAL</span></div><div><strong>PUBG Global UC</strong><small>PUBG Mobile Global</small><b class="arrow">↗</b></div></button>
+   <button class="game" onclick="openGame('bgmi')"><div class="game-art bgmi">BG<span>BATTLEGROUNDS MOBILE INDIA</span></div><div><strong>BGMI UC</strong><small>Battlegrounds Mobile India</small><b class="arrow">↗</b></div></button>
+  </div>
+ </section>
+ <section>
+  <div class="section-head"><div><h2>How it works</h2><div class="sub">A straightforward top-up journey</div></div></div>
+  <div class="info-grid">
+   <div class="info"><div class="iconbox">01</div><b>Choose a package</b><p>Select the game and the top-up amount you want.</p></div>
+   <div class="info"><div class="iconbox">02</div><b>Enter player details</b><p>Provide the correct Player ID and required region or server details.</p></div>
+   <div class="info"><div class="iconbox">03</div><b>Confirm your order</b><p>Review the details and follow the payment instructions when live payments are enabled.</p></div>
+  </div>
+ </section>
+</main>
+<main id="gameView" class="view">
+ <div class="back" onclick="home()">← Back to store</div>
+ <div class="section-head"><div><span class="pill" id="gameTag">GAME TOP-UP</span><h2 id="gameTitle" style="margin-top:12px">MLBB Diamonds</h2><div class="sub" id="gameDesc">Select a package</div></div></div>
+ <div class="product-layout">
+  <div class="panel">
+   <h3>1. Enter player details</h3>
+   <label class="field">PLAYER ID<input id="playerId" placeholder="Enter your Player ID" autocomplete="off"></label>
+   <label class="field" id="serverLabel">ZONE / SERVER ID<input id="serverId" placeholder="Enter Zone ID" autocomplete="off"></label>
+   <p class="mini" id="idHelp">Double-check your details before placing an order. Incorrect IDs may not be refundable.</p>
+   <h3 style="margin-top:24px">2. Select package</h3>
+   <div class="packages" id="packageList"></div>
+  </div>
+  <div class="panel">
+   <h3>Order summary</h3>
+   <div class="summary"><span>Game</span><b id="sumGame">MLBB</b></div>
+   <div class="summary"><span>Package</span><b id="sumPackage">Not selected</b></div>
+   <div class="summary"><span>Player ID</span><b id="sumPlayer">—</b></div>
+   <div class="summary total"><span>Demo price</span><b id="sumPrice">₹0</b></div>
+   <div class="notice">Prices shown are the Bagoo Official Store prices provided for this demo. No payment will be collected and no diamonds or UC will be delivered.</div>
+   <button class="primary full" onclick="placeDemoOrder()">Continue (demo)</button>
+   <div class="status" id="orderStatus"></div>
+   <p class="mini">Live checkout will require an approved payment gateway and a verified, funded supplier API. Do not enter passwords or OTPs here.</p>
+  </div>
+ </div>
+</main>
+<main id="trackView" class="view">
+ <div class="back" onclick="home()">← Back to store</div>
+ <div class="panel" style="max-width:560px;margin:30px auto">
+  <h2>Track your order</h2><p class="sub">Enter a demo order reference to see the preview status.</p>
+  <label class="field">ORDER REFERENCE<input id="trackId" placeholder="Example: BAG-123456"></label>
+  <button class="primary full" onclick="trackDemo()">Check status</button>
+  <div class="status" id="trackStatus"></div>
+ </div>
+</main>
+<footer><div><b>BAGOO OFFICIAL STORE</b><br>Gaming top-ups made simple.</div><div>Demo website · Live payments not enabled<br>© 2026 Bagoo Official Store</div></footer>
+</div>
+</div>
+<script>
+const games={
+ mlbb:{title:"MLBB Diamonds",tag:"MOBILE LEGENDS",desc:"Choose your Diamonds package.",server:true,help:"Enter your Mobile Legends Player ID and Zone ID. Never share your account password.",packages:[["5 Diamonds",5,20],["11 Diamonds",11,30],["22 Diamonds",22,55],["56 Diamonds",56,95],["86 Diamonds",86,140],["110 Diamonds",110,180],["172 Diamonds",172,300],["257 Diamonds",257,450],["275 Diamonds",275,490],["343 Diamonds",343,598],["429 Diamonds",429,720],["514 Diamonds",514,800],["565 Diamonds",565,890],["600 Diamonds",600,950],["706 Diamonds",706,1180],["792 Diamonds",792,1260],["878 Diamonds",878,1370],["963 Diamonds",963,1480],["1050 Diamonds",1050,1650],["1135 Diamonds",1135,1800],["1220 Diamonds",1220,1900],["1412 Diamonds",1412,2200],["2195 Diamonds",2195,3200],["2901 Diamonds",2901,4200],["3688 Diamonds",3688,5200],["5532 Diamonds",5532,7700],["9288 Diamonds",9288,12700],["Weekly Pass",1,160],["Twilight Pass",1,900]]},
+ pubg:{title:"PUBG Global UC",tag:"PUBG MOBILE GLOBAL",desc:"Choose your UC package.",server:false,help:"Enter your PUBG Mobile Global Character ID. Make sure your account is on the Global version.",packages:[["60 UC",60,80],["325 UC",325,390],["660 UC",660,800],["900 UC",900,1000],["1800 UC",1800,1970],["3850 UC",3850,3780],["4150 UC",4150,4029],["8100 UC",8100,7200],["10800 UC",10800,10000]]},
+ bgmi:{title:"BGMI UC",tag:"BATTLEGROUNDS MOBILE INDIA",desc:"Choose your UC package.",server:false,help:"Enter your BGMI Character ID. BGMI and PUBG Global are separate game regions.",packages:[["60 UC",60,80],["325 UC",325,390],["660 UC",660,800],["900 UC",900,1000],["1800 UC",1800,1970],["3850 UC",3850,3780],["4150 UC",4150,4029],["8100 UC",8100,7200],["10800 UC",10800,10000]]}
+};
+let current="mlbb",selected=null;
+function show(id){document.querySelectorAll("main.view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function home(){show("homeView")}
+function scrollToGames(){home();setTimeout(()=>document.getElementById("gamesSection").scrollIntoView({behavior:"smooth"}),30)}
+function showTrack(){show("trackView")}
+function openGame(id){
+ current=id;selected=null;const g=games[id];show("gameView");
+ document.getElementById("gameTag").textContent=g.tag;document.getElementById("gameTitle").textContent=g.title;document.getElementById("gameDesc").textContent=g.desc;
+ document.getElementById("serverLabel").style.display=g.server?"block":"none";document.getElementById("idHelp").textContent=g.help;
+ document.getElementById("playerId").value="";document.getElementById("serverId").value="";
+ document.getElementById("sumGame").textContent=g.title;document.getElementById("sumPackage").textContent="Not selected";document.getElementById("sumPlayer").textContent="—";document.getElementById("sumPrice").textContent="₹0";document.getElementById("orderStatus").style.display="none";
+ const groups=id==="mlbb"?[{name:"Small Pack",start:0,end:6},{name:"Normal Pack",start:6,end:15},{name:"Large Pack",start:15,end:27},{name:"Passes",start:27,end:29}]:[{name:"Available Packages",start:0,end:g.packages.length}];
+ document.getElementById("packageList").innerHTML=groups.map(group=>`<div class="package-section"><h4>${group.name}</h4><p>${group.end-group.start} options</p></div>`+g.packages.slice(group.start,group.end).map((p,j)=>{const i=group.start+j;return `<button class="pkg" onclick="choosePackage(${i})"><b>${p[0]}</b><small>${p[1]>1?p[1]+" Diamonds":p[0].includes("Pass")?"Pass":"7 days"}</small><div class="price">₹${p[2].toLocaleString("en-IN")}</div></button>`}).join("")).join("");
+}
+function choosePackage(i){selected=i;const p=games[current].packages[i];document.querySelectorAll(".pkg").forEach((x,n)=>x.classList.toggle("selected",n===i));document.getElementById("sumPackage").textContent=p[0];document.getElementById("sumPrice").textContent="₹"+p[2].toLocaleString("en-IN");}
+function placeDemoOrder(){
+ const player=document.getElementById("playerId").value.trim(),server=document.getElementById("serverId").value.trim(),g=games[current],status=document.getElementById("orderStatus");
+ if(!player){alert("Please enter your Player ID.");return}
+ if(g.server&&!server){alert("Please enter your Zone ID.");return}
+ if(selected===null){alert("Please select a package.");return}
+ const ref="BAG-"+Math.floor(100000+Math.random()*900000);
+ document.getElementById("sumPlayer").textContent=player+(g.server?" / "+server:"");
+ status.style.display="block";status.innerHTML="<b>Demo order created: "+ref+"</b><br>Preview only — no payment taken and no game currency delivered. This order is not sent to a supplier.";
+ document.getElementById("trackId").value=ref;
+}
+function trackDemo(){const v=document.getElementById("trackId").value.trim(),s=document.getElementById("trackStatus");s.style.display="block";s.textContent=v?"Demo preview: live order tracking is not connected yet.":"Enter an order reference first."}
+</script>
+</body>
+</html>
